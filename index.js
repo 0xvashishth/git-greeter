@@ -1,3 +1,4 @@
+var commentController = require("./events/comment");
 
 
 module.exports = (app, { getRouter }) => {
@@ -19,4 +20,23 @@ module.exports = (app, { getRouter }) => {
     console.log("Inside any things");
   });
 
+
+
+  // on creating issue comments
+  app.on("issue_comment.created", async (context) => {
+    var body = context.payload.comment.body;
+    if (body == "/assign") {
+      // assigning issue or pull request to user
+      return await issueController.issueAssign(context);
+    }else if(body == "/listfiles"){
+      // listing files of the pull request
+      return await pull_requestController.pull_requestListFiles(context);
+    }
+    return await commentController.reactOnIssueCommentCreate(context);
+  });
+
+  // on editing issue comments
+  app.on("issue_comment.edited", async (context) => {
+    return await commentController.reactOnIssueCommentEdit(context);
+  });
 };
