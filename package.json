@@ -9,6 +9,7 @@
     "start": "probot run ./index.js"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "probot": "^12.0.0"
   },
   "engines": {
