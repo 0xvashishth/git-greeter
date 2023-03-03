@@ -4,7 +4,7 @@ var pull_requestController = require("./events/pull_request");
 
 module.exports = (app, { getRouter }) => {
   // Checking, app is currently working or not
-  app.log("Yay! The app was loaded!");
+  app.log("Yay! The app is loaded!");
 
   const router = getRouter("/api");
 
