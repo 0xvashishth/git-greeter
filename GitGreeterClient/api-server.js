@@ -11,7 +11,6 @@ const app = express();
 const User = require("./user");
 const router = express.Router();
 const bodyParser = require('body-parser')
-const controller = require("./controller")
 connectDB();
 
 const port = process.env.API_PORT || 3001;
@@ -59,7 +58,7 @@ app.get("/api/external", checkJwt, (req, res) => {
   });
 });
 
-app.post("/api/user/update", async function (req, res){
+app.post("/api/user/update", async function(req, res) {
   const {
     _id,
     name,
@@ -83,7 +82,7 @@ app.post("/api/user/update", async function (req, res){
     reactOnIssueCommentEdit,
   } = req.body;
   const userupdate = await User.updateOne(
-    {_id},
+    { _id },
     { $set: req.body }
   );
   if (!userupdate) {
@@ -101,13 +100,13 @@ app.get("/api/user", checkJwt, async (req, res) => {
     if (user == undefined) {
       console.log("User is not registered");
       try {
-        const {issueCreate, issueAssign, issueEdit, issueAddLabel,
+        const { issueCreate, issueAssign, issueEdit, issueAddLabel,
           issueClosedCompleted, issueClosedNotCompleted, issueReopened,
           pull_requestCreate, pull_requestCloseMerged, pull_requestClosedNotMerged,
           pull_requestReopened, pull_requestAddLabel, pull_requestAddLabelOnSynchronize,
-          pull_requestListFiles, reactOnIssueCommentCreate, reactOnIssueCommentEdit} = defaultContent;
+          pull_requestListFiles, reactOnIssueCommentCreate, reactOnIssueCommentEdit } = defaultContent;
         const usernew = new User({
-          name,email,username, issueCreate, issueAssign, issueEdit, issueAddLabel,
+          name, email, username, issueCreate, issueAssign, issueEdit, issueAddLabel,
           issueClosedCompleted, issueClosedNotCompleted, issueReopened,
           pull_requestCreate, pull_requestCloseMerged, pull_requestClosedNotMerged,
           pull_requestReopened, pull_requestAddLabel, pull_requestAddLabelOnSynchronize,
