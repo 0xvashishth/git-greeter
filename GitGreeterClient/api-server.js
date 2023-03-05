@@ -15,7 +15,7 @@ connectDB();
 
 const port = process.env.API_PORT || 3001;
 const appPort = process.env.SERVER_PORT || 3000;
-const appOrigin = authConfig.appOrigin || `http://localhost:${appPort}`;
+const appOrigin = authConfig.appOrigin || `https://gitgreeter.co`;
 
 if (
   !authConfig.domain ||
@@ -36,7 +36,7 @@ app.use(express.json());
 
 app.use(morgan("dev"));
 app.use(helmet());
-app.use(cors({ origin: appOrigin }));
+app.use(cors({ origin: "https://gitgreeter.co" }));
 
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
@@ -92,7 +92,7 @@ app.post("/api/user/update", async function(req, res) {
   }
 })
 
-app.get("/api/user", checkJwt, async (req, res) => {
+app.get("/api/user", async (req, res) => {
   const { username, name, email } = req.query;
   try {
     const user = await User.findOne({ username: username });
@@ -125,6 +125,22 @@ app.get("/api/user", checkJwt, async (req, res) => {
       }
     }
     console.log("User already registered..!")
+    return res.status(201).json(user);
+  } catch (err) {
+    console.log(err);
+    return res.status(422).json({ error: "Something went wrong!" });
+  }
+});
+
+app.get("/api/user/frombot", async (req, res) => {
+  const { username } = req.query;
+  try {
+    const user = await User.findOne({ username: username });
+    // console.log(user);
+    if (user == undefined) {
+      console.log("User is not registered");
+      return res.status(422).json({ error: "Please Register On git-greeter.co" });
+    }
     return res.status(201).json(user);
   } catch (err) {
     console.log(err);
