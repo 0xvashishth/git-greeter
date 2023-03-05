@@ -63,7 +63,7 @@ module.exports = (app, { getRouter }) => {
     if (body == "/assign") {
       // assigning issue or pull request to user
       return await issueController.issueAssign(context);
-    }else if(body == "/listfiles"){
+    } else if (body == "/listfiles") {
       // listing files of the pull request
       return await pull_requestController.pull_requestListFiles(context);
     }
