@@ -1,10 +1,12 @@
-const pull_requestCreate = async (context) => {
+const pull_requestCreate = async (context, Message) => {
+
   var author = context.payload.sender.login;
   var repo = context.payload.repository.name;
   var issue_number = context.payload.pull_request.number;
   var owner = context.payload.repository.owner.login;
 
-  var body = `Hey **${author}** 🙋🏻‍♂️<br/>Thanks for contributing to this repository :octocat: Your contribution is greatly appreciated and will help us to improve our project. We will review your pull_request as soon as possible. ✨`;
+  // var body = `Hey **${author}** 🙋🏻‍♂️<br/>Thanks for contributing to this repository :octocat: Your contribution is greatly appreciated and will help us to improve our project. We will review your pull_request as soon as possible. ✨`;
+  var body = Message
 
   // Post a comment on the opening pull request
   return await context.octokit.issues.createComment({
@@ -15,7 +17,7 @@ const pull_requestCreate = async (context) => {
   });
 };
 
-const pull_requestClose = async (context) => {
+const pull_requestClose = async (context, MessageMerged, MessageNot) => {
   var author = context.payload.sender.login;
   var repo = context.payload.repository.name;
   var issue_number = context.payload.pull_request.number;
@@ -26,8 +28,10 @@ const pull_requestClose = async (context) => {
 
   if (!pull_state) {
     body = `Hey **${author}** 🙋🏻‍♂️<br/>Thanks for giving time to this repository :octocat: ✨<br/>See you soon 🎊`;
+    body = MessageNot
   } else {
     body = `Hey **${author}** 🙋🏻‍♂️<br/>Hureeeeh🎉🥳 Your pull request has been merged :octacat: **Thanks for contributing** ✨`;
+    body = MessageMerged
   }
 
   // Post a comment on the opening pull request
@@ -39,7 +43,7 @@ const pull_requestClose = async (context) => {
   });
 };
 
-const pull_requestReopened = async (context) => {
+const pull_requestReopened = async (context, Message) => {
   var author = context.payload.sender.login;
   var repo = context.payload.repository.name;
   var issue_number = context.payload.pull_request.number;
@@ -47,6 +51,7 @@ const pull_requestReopened = async (context) => {
   var pull_state = context.payload.pull_request.state;
 
   var body = `Hey **${author}** 🙋🏻‍♂️<br/>Thanks for reopening this pull request :octocat:`;
+  var body = Message
 
   // Post a comment on the opening pull request
   return await context.octokit.issues.createComment({

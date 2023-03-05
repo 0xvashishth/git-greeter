@@ -1,8 +1,9 @@
-const issueCreate = async (context) => {
+const issueCreate = async (context, issueGreetMessage) => {
   var author = context.payload.sender.login;
   const params = context.issue({
-    body: `Hey **${author}** 🙋🏻‍♂️<br/>Thank you for taking the time to create an issue in our GitHub repository :octocat: Your contribution is greatly appreciated and will help us improve our project. We value your feedback and will review your issue as soon as possible. Please feel free to provide any additional information or context that might help us better understand your issue. 👍🏻`,
+    body: issueGreetMessage,
   });
+  // `Hey **${author}** 🙋🏻‍♂️<br/>Thank you for taking the time to create an issue in our GitHub repository :octocat: Your contribution is greatly appreciated and will help us improve our project. We value your feedback and will review your issue as soon as possible. Please feel free to provide any additional information or context that might help us better understand your issue. 👍🏻`
   // Post a comment on the issue creating
   return await context.octokit.issues.createComment(params);
 };
@@ -70,9 +71,9 @@ const issueClose = async (context) => {
 
   var body;
 
-  if (issue_state=="completed") {
+  if (issue_state == "completed") {
     body = `Hey **${author}** 🙋🏻‍♂️<br/>Hureeeeh🎉🥳 Your issue has been closed and **resolved**. 🎉 <br/> **Thanks for contributing** ✨`;
-  } else if(issue_state == "not_planned") {
+  } else if (issue_state == "not_planned") {
     body = `Hey **${author}** 🙋🏻‍♂️<br/>Thanks for giving time to this repository :octocat: ✨<br/>This issue won't fixed.😶<br/> **See you soon** 🎊`;
   }
 

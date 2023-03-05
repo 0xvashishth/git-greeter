@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Row } from "reactstrap";
 import { getConfig } from "../config";
 
-function Content () {
+function Content() {
   const {
     getAccessTokenSilently,
     loginWithPopup,
@@ -11,14 +11,14 @@ function Content () {
     user
   } = useAuth0();
   const [content, setContent] = useState({
-    name: "",email: "",username: "", 
-    issueCreate: "", issueAssign: "", issueEdit: "",issueAddLabel: "", issueClosedCompleted: "", issueClosedNotCompleted: "", issueReopened: "",
+    name: "", email: "", username: "",
+    issueCreate: "", issueAssign: "", issueEdit: "", issueAddLabel: "", issueClosedCompleted: "", issueClosedNotCompleted: "", issueReopened: "",
     pull_requestCreate: "", pull_requestCloseMerged: "", pull_requestClosedNotMerged: "", pull_requestReopened: "",
     pull_requestAddLabel: "", pull_requestAddLabelOnSynchronize: "", pull_requestListFiles: "",
     reactOnIssueCommentCreate: "", reactOnIssueCommentEdit: ""
   });
   const [loader, setLoader] = useState("");
-  const { apiOrigin = "http://localhost:3001", audience } = getConfig();
+  const { apiOrigin = "https://gitgreeter.co", audience } = getConfig();
 
   const handleChange = (name) => (event) => {
     const value = event.target.value;
@@ -67,32 +67,32 @@ function Content () {
       console.log("Error in the response", error);
     }
   };
-  useEffect(()=>{
-    callApi(); 
+  useEffect(() => {
+    callApi();
   }, [])
 
 
-    return (
-      <div className="next-steps my-5">
-        <Row className="d-flex justify-content-between">
-            <label className="form-cotrol" htmlFor="issueCreate">Issue Greeting Message (MarkDown Supporte & use @author to mention the issue creator)</label>
-            <textarea id="issueCreate" value={content.issueCreate} onChange={handleChange("issueCreate")} type="text" className="form-control" placeholder="Type Issue Greeting Message"/>
-            <label className="form-cotrol" htmlFor="pull_requestCreate">Pull Request Greeting Message (MarkDown Supported & use @author to mention the pull request creator)</label>
-            <textarea id="pull_requestCreate" value={content.pull_requestCreate} onChange={handleChange("pull_requestCreate")} type="text" className="form-control" placeholder="Type Pull Request Greeting Message"/>
-            <label className="form-cotrol" htmlFor="pull_requestCloseMerged">Pull Request Closing Message When Merged (MarkDown Supported & use @author to mention the pull request creator)</label>
-            <textarea id="pull_requestCloseMerged" value={content.pull_requestCloseMerged} onChange={handleChange("pull_requestCloseMerged")} type="text" className="form-control" placeholder="Type Pull Request Merge Greeting Message"/>
-            <label className="form-cotrol" htmlFor="pull_requestClosedNotMerged">Pull Request Closing Message When UnMerged (MarkDown Supported & use @author to mention the pull request creator)</label>
-            <textarea id="pull_requestClosedNotMerged" value={content.pull_requestClosedNotMerged} onChange={handleChange("pull_requestClosedNotMerged")} type="text" className="form-control" placeholder="Type Pull Request Close UnMerged Greeting Message"/>
-            <label className="form-cotrol" htmlFor="pull_requestReopened">Pull Request Reopening Message (MarkDown Supported & use @author to mention the pull request creator)</label>
-            <textarea id="pull_requestReopened" value={content.pull_requestReopened} onChange={handleChange("pull_requestReopened")} type="text" className="form-control" placeholder="Type Pull Request Reopen Greeting Message"/>
-        </Row>
-        <div className="mt-4">
-          <button className="btn btn-outline-secondary" onClick={UpdateDataApi}>Update Messages</button>
-          &nbsp;&nbsp;
-          {loader}
-        </div>
+  return (
+    <div className="next-steps my-5">
+      <Row className="d-flex justify-content-between">
+        <label className="form-cotrol" htmlFor="issueCreate">Issue Greeting Message (MarkDown Supporte & use @author to mention the issue creator)</label>
+        <textarea id="issueCreate" value={content.issueCreate} onChange={handleChange("issueCreate")} type="text" className="form-control" placeholder="Type Issue Greeting Message" />
+        <label className="form-cotrol" htmlFor="pull_requestCreate">Pull Request Greeting Message (MarkDown Supported & use @author to mention the pull request creator)</label>
+        <textarea id="pull_requestCreate" value={content.pull_requestCreate} onChange={handleChange("pull_requestCreate")} type="text" className="form-control" placeholder="Type Pull Request Greeting Message" />
+        <label className="form-cotrol" htmlFor="pull_requestCloseMerged">Pull Request Closing Message When Merged (MarkDown Supported & use @author to mention the pull request creator)</label>
+        <textarea id="pull_requestCloseMerged" value={content.pull_requestCloseMerged} onChange={handleChange("pull_requestCloseMerged")} type="text" className="form-control" placeholder="Type Pull Request Merge Greeting Message" />
+        <label className="form-cotrol" htmlFor="pull_requestClosedNotMerged">Pull Request Closing Message When UnMerged (MarkDown Supported & use @author to mention the pull request creator)</label>
+        <textarea id="pull_requestClosedNotMerged" value={content.pull_requestClosedNotMerged} onChange={handleChange("pull_requestClosedNotMerged")} type="text" className="form-control" placeholder="Type Pull Request Close UnMerged Greeting Message" />
+        <label className="form-cotrol" htmlFor="pull_requestReopened">Pull Request Reopening Message (MarkDown Supported & use @author to mention the pull request creator)</label>
+        <textarea id="pull_requestReopened" value={content.pull_requestReopened} onChange={handleChange("pull_requestReopened")} type="text" className="form-control" placeholder="Type Pull Request Reopen Greeting Message" />
+      </Row>
+      <div className="mt-4">
+        <button className="btn btn-outline-secondary" onClick={UpdateDataApi}>Update Messages</button>
+        &nbsp;&nbsp;
+        {loader}
       </div>
-    );
+    </div>
+  );
 }
 
 export default Content;
