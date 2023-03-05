@@ -1,6 +1,4 @@
-<h1 align="center"> git-greeter </h1>
-
----
+# Git-Greeter
 
 - A GitHub App for automating the github basic workflow.
 
