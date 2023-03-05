@@ -21,15 +21,23 @@ Many things:
 - Much more...
 
 ## How we built it
-- I used one GitHub REST API Official documentation, and learnt how to make request in GitHub Webhooks.
-- I utilize probot tool for configuring this app for the GitHub.
-
+- I used one GitHub REST API Official documentation, and learnt how to make requests in GitHub Webhooks.
+- I utilize Probot tool for configuring this app for GitHub.
+- Used Replit for hosting all server, client and GitHub app.
 
 ## Challenges we ran into
+- I faced an issue in retrieving the data from the mongo DB in Probot index.js configuration, but I found a way of doing the same, and that was same as we do in normal NodeJS server.
 
 ## Accomplishments that we're proud of
+- This bot is customizable and whatever we want to do edit the messages.
 
 ## What we learned
+- Learnt about GitHub REST API
+- Learnt how to communicate with different apps via APIs.
+- Learnt about GitHub Webhook events
+- Got to know about awesome webhook event URL provider called `smee.io`
 
 ## What's next for git-greeter
-- Want to add some more cool functionalities like makind cards and commenting the same in the issues and prs. cards means the contribution done in the current repo by the user.
+- Want to add some more cool functionalities like making cards and commenting on the same in the issues and pull requests. cards mean the contribution done in the current repo by the user.
+
+<b>Stay Tuned 🎉</b>
