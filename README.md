@@ -18,18 +18,18 @@ Many things:
 - React on some good messages which have some good keywords.
 - Much more...
 
-## How we built it
+## How I built it
 - I used one GitHub REST API Official documentation, and learnt how to make requests in GitHub Webhooks.
 - I utilize Probot tool for configuring this app for GitHub.
 - Used Replit for hosting all server, client and GitHub app.
 
-## Challenges we ran into
+## Challenges I ran into
 - I faced an issue in retrieving the data from the mongo DB in Probot index.js configuration, but I found a way of doing the same, and that was same as we do in normal NodeJS server.
 
-## Accomplishments that we're proud of
+## Accomplishments that I'm proud of
 - This bot is customizable and whatever we want to do edit the messages.
 
-## What we learned
+## What I learned
 - Learnt about GitHub REST API
 - Learnt how to communicate with different apps via APIs.
 - Learnt about GitHub Webhook events
